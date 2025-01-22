@@ -1,0 +1,65 @@
+[package]
+name = "txrelayer-blueprint"
+version = "0.1.0"
+edition = "2021"
+description = "A Free Transaction Relayer on Tangle built as a blueprint"
+authors = ["Shady Khalifa <dev+github@shadykhalifa.me>"]
+license = "MIT OR Apache-2.0"
+homepage = "https://tangle.tools"
+repository = "https://github.com/tangle-network/txrelayer-blueprint"
+readme = "README.md"
+categories = ["cryptography", "cryptography::cryptocurrencies"]
+keywords = ["tangle", "blueprint", "avs"]
+rust-version = "1.81"
+
+[features]
+default = ["gadget"]
+gadget = ["color-eyre", "tracing-subscriber"]
+
+[dependencies]
+thiserror = "^1"
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["tangle", "macros"] }
+
+axum = { version = "0.8", features = ["macros"] }
+tower-http = { version = "0.6.1", features = ["timeout", "trace"] }
+serde = { version = "1.0", features = ["derive"] }
+futures = { version = "0.3", default-features = false }
+
+color-eyre = { version = "0.6", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+[dependencies.alloy]
+version = "^0.9"
+features = [
+  "sol-types",
+  "contract",
+  "network",
+  "providers",
+  "rpc",
+  "signers",
+  "signer-local",
+]
+
+[build-dependencies]
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["build"] }
+
+[dev-dependencies]
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["testing", "tangle"] }
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "txrelayer-blueprint"
+path = "src/main.rs"
+
+[package.metadata.blueprint]
+manager = { Evm = "HelloBlueprint" }
+
+[[package.metadata.gadget.Native.sources]]
+owner = "tangle-network"
+repo = "txrelayer-blueprint"
+tag = "0.1.0"
+binaries = [
+    { arch = "Amd64", os = "Linux", name = "amd64-linux-txrelayer-blueprint-gadget" },
+    { arch = "Arm64", os = "Linux", name = "arm64-linux-txrelayer-blueprint-gadget" },
+]

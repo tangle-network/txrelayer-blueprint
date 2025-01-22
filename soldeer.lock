@@ -1,0 +1,13 @@
+[[dependencies]]
+name = "forge-std"
+version = "1.9.5"
+url = "https://soldeer-revisions.s3.amazonaws.com/forge-std/1_9_5_21-12-2024_15:04:05_forge-std-1.9.zip"
+checksum = "57ada736f383289db77fac4472d48f820e7c98172cf9b01681b0c37065ce043f"
+integrity = "4753ffdfa0dde40878372b6a4d8e8fd1648b190b33996896c8b92f6f1680850f"
+
+[[dependencies]]
+name = "tnt-core"
+version = "0.1.0"
+url = "https://soldeer-revisions.s3.amazonaws.com/tnt-core/0_1_0_10-12-2024_20:51:20_tnt-core.zip"
+checksum = "628b2475c4d629c1cb2578b41b2e10daa3711d711aa5f5b0dd6153959808620f"
+integrity = "c380cd3e1def40cd40d70db357afdca4efba79d2561f850f05f395dc634a774e"
