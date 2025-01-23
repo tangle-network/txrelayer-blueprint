@@ -3289,6 +3289,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "config"
+version = "0.15.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e329294a796e9b22329669c1f433a746983f9e324e07f4ef135be81bb2262de4"
+dependencies = [
+ "pathdiff",
+ "serde",
+ "serde_json",
+ "toml 0.8.19",
+ "winnow",
+]
+
+[[package]]
 name = "console"
 version = "0.15.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11894,6 +11907,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e91099d4268b0e11973f036e885d652fb0b21fedcf69738c627f94db6a44f42"
 
 [[package]]
+name = "pathdiff"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df94ce210e5bc13cb6651479fa48d14f601d9858cfe0467f43ae157023b938d3"
+
+[[package]]
 name = "pbkdf2"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -17204,6 +17223,7 @@ dependencies = [
  "axum",
  "blueprint-sdk",
  "color-eyre",
+ "config",
  "futures",
  "serde",
  "thiserror 1.0.69",

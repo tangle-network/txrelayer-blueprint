@@ -1,6 +1,6 @@
 use std::future::IntoFuture;
 
-use alloy::primitives::{Address, Bytes, TxHash, B256, U256};
+use alloy::primitives::{Address, Bytes, Selector, TxHash, B256, U256};
 use axum::{
     extract::{rejection::JsonRejection, FromRequest, State},
     http::StatusCode,
@@ -32,17 +32,14 @@ pub struct RelayTransactionRequest {
 }
 
 #[derive(Clone, Debug, Serialize)]
-#[serde(tag = "status", content = "data", rename_all = "camelCase")]
-pub enum RelayTransactionResponse {
-    Success {
-        tx_hash: TxHash,
-        simulated_outcome: Bytes,
-    },
-    Failure {
-        error: String,
-    },
+#[serde(rename_all = "camelCase")]
+pub struct RelayTransactionResponse {
+    status: &'static str,
+    tx_hash: TxHash,
+    simulated_outcome: Bytes,
 }
 
+/// Relay a transaction from the `from` address to the `to` address with the given `value` and `data`.
 pub async fn relay_tx(
     State(ctx): State<ServiceContext>,
     AppJson(tx): AppJson<RelayTransactionRequest>,
@@ -58,6 +55,17 @@ pub async fn relay_tx(
         r,
         s,
     } = tx;
+
+    logging::info!(
+        "Relaying transaction from {} to {} with value {} and data {}",
+        from,
+        to,
+        value,
+        data
+    );
+
+    check_allowed_calls(&ctx.app_config, &to, &data)?;
+
     let dispatch_builder = ctx
         .call_permit_instance
         .dispatch(from, to, value, data, gaslimit, deadline, v, r, s);
@@ -72,11 +80,32 @@ pub async fn relay_tx(
 
     Ok((
         StatusCode::OK,
-        AppJson(RelayTransactionResponse::Success {
+        AppJson(RelayTransactionResponse {
+            status: "success",
             tx_hash: *pending_tx.tx_hash(),
             simulated_outcome: outcome.output,
         }),
     ))
+}
+
+/// Check if the call is allowed by the tx relayer.
+fn check_allowed_calls(
+    app_config: &crate::config::AppConfig,
+    to: &Address,
+    data: &Bytes,
+) -> Result<(), AppError> {
+    let sel = data.get(0..4).unwrap_or_default();
+    let sel = Selector::try_from(sel).map_err(|_| AppError::NotAllowedCall)?;
+    let maybe_allowed_calls = app_config.allowed_calls.get(to);
+    let allowed = match maybe_allowed_calls {
+        Some(calls) => calls.contains(&sel),
+        None => false,
+    };
+    if allowed {
+        Ok(())
+    } else {
+        Err(AppError::NotAllowedCall)
+    }
 }
 
 // Create our own JSON extractor by wrapping `axum::Json`. This makes it easy to override the
@@ -102,6 +131,9 @@ pub enum AppError {
     JsonRejection(JsonRejection),
     // Error from a third party library we're using
     Blueprint(crate::Error),
+
+    /// The call is not allowed
+    NotAllowedCall,
 }
 
 // Tell axum how `AppError` should be converted into a response.
@@ -110,6 +142,7 @@ pub enum AppError {
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         // How we want errors responses to be serialized
+
         #[derive(Serialize, Default)]
         struct ErrorResponse {
             status: &'static str,
@@ -119,6 +152,17 @@ impl IntoResponse for AppError {
         }
 
         let (status, err) = match self {
+            AppError::NotAllowedCall => (
+                StatusCode::FORBIDDEN,
+                ErrorResponse {
+                    status: "failure",
+                    error: "Call not allowed".to_owned(),
+                    details: Some(
+                        "The call you are trying to make is not allowed by the tx relayer"
+                            .to_owned(),
+                    ),
+                },
+            ),
             AppError::JsonRejection(rejection) => {
                 // This error is caused by bad user input so don't log it
                 (

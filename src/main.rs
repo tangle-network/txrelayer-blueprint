@@ -19,8 +19,14 @@ async fn main() -> color_eyre::Result<()> {
         .with(tracing_subscriber::fmt::layer())
         .init();
     color_eyre::install()?;
-    let context =
-        blueprint::ServiceContext::new(env, blueprint::call_permit::CALL_PERMIT_ADDRESS).await?;
+
+    let app_config_name = std::env::var("APP_CONFIG_NAME").unwrap_or_else(|_| "config".to_string());
+    let context = blueprint::ServiceContext::new(
+        env,
+        blueprint::call_permit::CALL_PERMIT_ADDRESS,
+        &app_config_name,
+    )
+    .await?;
     // build our application with some routes
     let app = axum::Router::new()
         .nest("/api/v1", blueprint::http::routes())

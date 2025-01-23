@@ -50,6 +50,8 @@
             toolchain
             pkgs.foundry-bin
             pkgs.taplo
+            pkgs.bun
+            pkgs.typescript-language-server
 
             pkgs.cargo-nextest
             pkgs.cargo-expand

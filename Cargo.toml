@@ -18,32 +18,33 @@ gadget = ["color-eyre", "tracing-subscriber"]
 
 [dependencies]
 thiserror = "^1"
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["tangle", "macros"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
+    "tangle",
+    "macros",
+] }
 
 axum = { version = "0.8", features = ["macros"] }
 tower-http = { version = "0.6.1", features = ["timeout", "trace"] }
 serde = { version = "1.0", features = ["derive"] }
 futures = { version = "0.3", default-features = false }
+config = { version = "0.15", default-features = false, features = ["json", "toml"] }
 
 color-eyre = { version = "0.6", optional = true }
 tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
 [dependencies.alloy]
 version = "^0.9"
-features = [
-  "sol-types",
-  "contract",
-  "network",
-  "providers",
-  "rpc",
-  "signers",
-  "signer-local",
-]
+features = ["sol-types", "contract", "network", "providers", "rpc", "signers", "signer-local"]
 
 [build-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["build"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
+    "build",
+] }
 
 [dev-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = ["testing", "tangle"] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
+    "testing",
+    "tangle",
+] }
 
 [lib]
 path = "src/lib.rs"
