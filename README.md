@@ -62,6 +62,9 @@ The blueprint can be configured using the `config.toml` or `config.json` file. T
 }
 ```
 
+### API Endpoints
+
+See [API.md](./API.md) for a list of available API endpoints and their descriptions.
 
 ### Running Tests
 
