@@ -53,6 +53,11 @@ path = "src/lib.rs"
 name = "txrelayer-blueprint"
 path = "src/main.rs"
 
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
+
 [package.metadata.blueprint]
 manager = { Evm = "HelloBlueprint" }
 
