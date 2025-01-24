@@ -17,7 +17,7 @@ default = ["gadget"]
 gadget = ["color-eyre", "tracing-subscriber"]
 
 [dependencies]
-thiserror = "^1"
+thiserror = "^2"
 blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
     "tangle",
     "macros",
