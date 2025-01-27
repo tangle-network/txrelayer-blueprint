@@ -1,8 +1,12 @@
 ## Transaction Relayer API
 
-API Version: `v1`
-Deployed at:
-- Testnet: `https://testnet-txrelayer.tangle.tools`
+**API Version: `v1`**
+
+**Deployed at**:
+
+- By Tangle Team:
+  - **Testnet**: `https://testnet-txrelayer.tangle.tools`
+  - **Mainnet**: TBD
 
 #### Relay Transaction Endpoint
 
