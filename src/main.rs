@@ -1,7 +1,6 @@
 use std::time::Duration;
 
 use blueprint_sdk::logging;
-use blueprint_sdk::macros as gadget_macros;
 use blueprint_sdk::tokio;
 use tower_http::timeout::TimeoutLayer;
 use tower_http::trace::TraceLayer;

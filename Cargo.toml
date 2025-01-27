@@ -18,9 +18,9 @@ gadget = ["color-eyre", "tracing-subscriber"]
 
 [dependencies]
 thiserror = "^2"
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
-    "tangle",
-    "macros",
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = [
+  "tangle",
+  "macros",
 ] }
 
 axum = { version = "0.8", features = ["macros"] }
@@ -31,19 +31,20 @@ config = { version = "0.15", default-features = false, features = ["json", "toml
 
 color-eyre = { version = "0.6", optional = true }
 tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+# Always use the vendored version of openssl to avoid linking issues
+openssl = { version = "*", features = ["vendored"] }
+
 [dependencies.alloy]
 version = "^0.9"
 features = ["sol-types", "contract", "network", "providers", "rpc", "signers", "signer-local"]
 
 [build-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
-    "build",
-] }
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = ["build"] }
 
 [dev-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "serial/sdk", features = [
-    "testing",
-    "tangle",
+blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = [
+  "testing",
+  "tangle",
 ] }
 
 [lib]
@@ -66,6 +67,6 @@ owner = "tangle-network"
 repo = "txrelayer-blueprint"
 tag = "0.1.0"
 binaries = [
-    { arch = "Amd64", os = "Linux", name = "amd64-linux-txrelayer-blueprint-gadget" },
-    { arch = "Arm64", os = "Linux", name = "arm64-linux-txrelayer-blueprint-gadget" },
+  { arch = "Amd64", os = "Linux", name = "amd64-linux-txrelayer-blueprint-gadget" },
+  { arch = "Arm64", os = "Linux", name = "arm64-linux-txrelayer-blueprint-gadget" },
 ]

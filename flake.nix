@@ -54,6 +54,7 @@
             pkgs.typescript-language-server
 
             pkgs.cargo-nextest
+            pkgs.cargo-zigbuild
             pkgs.cargo-expand
           ];
           packages = [];
