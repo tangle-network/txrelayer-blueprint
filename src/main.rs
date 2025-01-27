@@ -12,7 +12,11 @@ async fn main() -> color_eyre::Result<()> {
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
-                format!("{}=debug,tower_http=debug", env!("CARGO_CRATE_NAME")).into()
+                format!(
+                    "gadget=debug,{}=debug,tower_http=debug",
+                    env!("CARGO_CRATE_NAME")
+                )
+                .into()
             }),
         )
         .with(tracing_subscriber::fmt::layer())
@@ -26,6 +30,7 @@ async fn main() -> color_eyre::Result<()> {
         &app_config_name,
     )
     .await?;
+    let port = context.app_config().port;
     // build our application with some routes
     let app = axum::Router::new()
         .nest("/api/v1", blueprint::http::routes())
@@ -39,8 +44,9 @@ async fn main() -> color_eyre::Result<()> {
         ));
 
     // run it with hyper
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await?;
-    logging::debug!("listening on {}", listener.local_addr()?);
+    let addr = format!("0.0.0.0:{port}");
+    let listener = tokio::net::TcpListener::bind(&addr).await?;
+    logging::debug!(%addr, "HTTP service started");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await?;
