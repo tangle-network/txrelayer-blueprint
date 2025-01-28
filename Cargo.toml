@@ -24,7 +24,7 @@ blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", br
 ] }
 
 axum = { version = "0.8", features = ["macros"] }
-tower-http = { version = "0.6.1", features = ["timeout", "trace"] }
+tower-http = { version = "0.6.1", features = ["timeout", "trace", "cors"] }
 serde = { version = "1.0", features = ["derive"] }
 futures = { version = "0.3", default-features = false }
 config = { version = "0.15", default-features = false, features = ["json", "toml"] }

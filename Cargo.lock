@@ -17220,7 +17220,7 @@ dependencies = [
 
 [[package]]
 name = "txrelayer-blueprint"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "alloy",
  "axum",
