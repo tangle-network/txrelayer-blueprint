@@ -3,6 +3,7 @@ use std::time::Duration;
 use blueprint_sdk::logging;
 use blueprint_sdk::tokio;
 use tower_http::timeout::TimeoutLayer;
+use tower_http::cors::CorsLayer;
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 use txrelayer_blueprint as blueprint;
@@ -37,6 +38,7 @@ async fn main() -> color_eyre::Result<()> {
         .fallback(handler_404)
         .with_state(context)
         .layer((
+            CorsLayer::permissive(),
             TraceLayer::new_for_http(),
             // Graceful shutdown will wait for outstanding requests to complete. Add a timeout so
             // requests don't hang forever.
