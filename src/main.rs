@@ -37,8 +37,8 @@ async fn main() -> color_eyre::Result<()> {
         .nest("/api/v1", blueprint::http::routes())
         .fallback(handler_404)
         .with_state(context)
+        .layer(CorsLayer::permissive())
         .layer((
-            CorsLayer::permissive(),
             TraceLayer::new_for_http(),
             // Graceful shutdown will wait for outstanding requests to complete. Add a timeout so
             // requests don't hang forever.
