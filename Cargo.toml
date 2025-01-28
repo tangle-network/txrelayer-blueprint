@@ -1,6 +1,6 @@
 [package]
 name = "txrelayer-blueprint"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A Free Transaction Relayer on Tangle built as a blueprint"
 authors = ["Shady Khalifa <dev+github@shadykhalifa.me>"]
