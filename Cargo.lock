@@ -213,7 +213,7 @@ dependencies = [
  "alloy-transport",
  "futures",
  "futures-util",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -323,7 +323,7 @@ dependencies = [
  "alloy-sol-types 0.8.19",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tracing",
 ]
 
@@ -349,7 +349,7 @@ dependencies = [
  "futures-utils-wasm",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -445,7 +445,7 @@ dependencies = [
  "schnellru",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tracing",
  "url",
@@ -576,7 +576,7 @@ dependencies = [
  "itertools 0.13.0",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -601,7 +601,7 @@ dependencies = [
  "auto_impl",
  "elliptic-curve",
  "k256",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -618,7 +618,7 @@ dependencies = [
  "aws-sdk-kms",
  "k256",
  "spki",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tracing",
 ]
 
@@ -637,7 +637,7 @@ dependencies = [
  "coins-bip39 0.12.0",
  "k256",
  "rand",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -754,7 +754,7 @@ dependencies = [
  "futures-utils-wasm",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tower",
  "tracing",
@@ -2846,7 +2846,7 @@ dependencies = [
  "semver 1.0.25",
  "serde",
  "tempfile",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "time",
  "toml 0.8.19",
  "walkdir",
@@ -2890,7 +2890,7 @@ dependencies = [
  "serde_json",
  "subxt",
  "tangle-subxt",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tracing",
  "tracing-subscriber 0.3.19",
@@ -5990,7 +5990,7 @@ dependencies = [
  "async-trait",
  "auto_impl",
  "gadget-std",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6009,7 +6009,7 @@ dependencies = [
  "gadget-std",
  "gadget-utils-evm",
  "num-bigint",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tokio-util",
  "url",
@@ -6039,7 +6039,7 @@ dependencies = [
  "hex",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "url",
 ]
@@ -6058,7 +6058,7 @@ dependencies = [
  "proc-macro2",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6080,7 +6080,7 @@ dependencies = [
  "subxt",
  "subxt-core",
  "tangle-subxt",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
 ]
 
@@ -6095,7 +6095,7 @@ dependencies = [
  "gadget-client-networking",
  "gadget-client-tangle",
  "gadget-std",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6111,7 +6111,7 @@ dependencies = [
  "libp2p",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tracing",
  "url",
 ]
@@ -6156,7 +6156,7 @@ dependencies = [
  "gadget-runners",
  "serde_json",
  "tempfile",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tracing",
  "url",
@@ -6176,7 +6176,7 @@ dependencies = [
  "gadget-crypto-sp-core",
  "gadget-crypto-sr25519",
  "gadget-crypto-tangle-pair-signer",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6191,7 +6191,7 @@ dependencies = [
  "paste",
  "serde",
  "serde_bytes",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "w3f-bls 0.1.8 (git+https://github.com/drewstone/bls.git?branch=drew/bump-ark-versions)",
 ]
 
@@ -6212,7 +6212,7 @@ dependencies = [
  "serde",
  "serde_bytes",
  "sha2 0.10.8",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6223,7 +6223,7 @@ dependencies = [
  "clap",
  "gadget-std",
  "serde",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6237,7 +6237,7 @@ dependencies = [
  "hex",
  "serde",
  "serde_bytes",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6264,7 +6264,7 @@ dependencies = [
  "k256",
  "serde",
  "serde_bytes",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6279,7 +6279,7 @@ dependencies = [
  "serde",
  "serde_bytes",
  "sp-core",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6293,7 +6293,7 @@ dependencies = [
  "schnorrkel",
  "serde",
  "serde_bytes",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6310,7 +6310,7 @@ dependencies = [
  "serde",
  "subxt",
  "subxt-core",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6333,7 +6333,7 @@ dependencies = [
  "async-trait",
  "gadget-logging",
  "gadget-std",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
 ]
 
@@ -6346,7 +6346,7 @@ dependencies = [
  "gadget-event-listeners-core",
  "gadget-logging",
  "gadget-std",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tokio-cron-scheduler",
 ]
@@ -6367,7 +6367,7 @@ dependencies = [
  "gadget-logging",
  "gadget-std",
  "gadget-stores",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "uuid 1.12.1",
 ]
@@ -6390,7 +6390,7 @@ dependencies = [
  "serde",
  "sp-core",
  "tangle-subxt",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
 ]
 
@@ -6429,7 +6429,7 @@ dependencies = [
  "subxt",
  "subxt-core",
  "tangle-subxt",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "w3f-bls 0.1.8 (git+https://github.com/drewstone/bls.git?branch=drew/bump-ark-versions)",
  "zeroize",
@@ -6490,7 +6490,7 @@ dependencies = [
  "round-based",
  "serde",
  "serde_json",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tracing",
 ]
@@ -6515,7 +6515,7 @@ dependencies = [
  "gadget-event-listeners",
  "gadget-logging",
  "gadget-utils",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
 ]
 
@@ -6540,7 +6540,7 @@ dependencies = [
  "gadget-runner-core",
  "gadget-std",
  "gadget-utils",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6561,7 +6561,7 @@ dependencies = [
  "k256",
  "sp-core",
  "tangle-subxt",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6583,7 +6583,7 @@ dependencies = [
  "colored",
  "num-traits",
  "rand",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
 ]
 
@@ -6636,7 +6636,7 @@ dependencies = [
  "subxt",
  "tangle-subxt",
  "tempfile",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tnt-core-bytecode",
  "tokio",
  "tracing",
@@ -6674,7 +6674,7 @@ dependencies = [
  "alloy-transport",
  "eigensdk",
  "gadget-utils-evm",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6829,7 +6829,7 @@ dependencies = [
  "bstr",
  "gix-path",
  "libc",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6841,7 +6841,7 @@ dependencies = [
  "bstr",
  "itoa",
  "jiff",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -6932,7 +6932,7 @@ dependencies = [
  "gix-trace",
  "home",
  "once_cell",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -7004,7 +7004,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9eaa01c3337d885617c0a42e92823922a2aea71f4caeace6fe87002bdcadbd90"
 dependencies = [
  "bstr",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -9368,7 +9368,7 @@ dependencies = [
  "log",
  "netlink-packet-core",
  "netlink-sys",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
 ]
 
 [[package]]
@@ -11979,7 +11979,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8b7cafe60d6cf8e62e1b9b2ea516a089c008945bb5a275416789e7db0bc199dc"
 dependencies = [
  "memchr",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "ucd-trie",
 ]
 
@@ -13079,7 +13079,7 @@ dependencies = [
  "rustc-hash 2.1.0",
  "rustls 0.23.21",
  "socket2",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tokio",
  "tracing",
 ]
@@ -13098,7 +13098,7 @@ dependencies = [
  "rustls 0.23.21",
  "rustls-pki-types",
  "slab",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tinyvec",
  "tracing",
  "web-time",
@@ -14665,7 +14665,7 @@ checksum = "297f631f50729c8c99b84667867963997ec0b50f32b2a7dbcab828ef0541e8bb"
 dependencies = [
  "num-bigint",
  "num-traits",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "time",
 ]
 
@@ -16681,11 +16681,11 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "2.0.11"
+version = "2.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d452f284b73e6d76dd36758a0c8684b1d5be31f92b89d07fd5822175732206fc"
+checksum = "567b8a2dae586314f7be2a752ec7474332959c6460e02bde30d702a66d488708"
 dependencies = [
- "thiserror-impl 2.0.11",
+ "thiserror-impl 2.0.12",
 ]
 
 [[package]]
@@ -16701,9 +16701,9 @@ dependencies = [
 
 [[package]]
 name = "thiserror-impl"
-version = "2.0.11"
+version = "2.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26afc1baea8a989337eeb52b6e72a039780ce45c3edfcc9c5b9d112feeb173c2"
+checksum = "7f7cf42b4507d8ea322120659672cf1b9dbb93f8f2d4ecfd6e51350ff5b17a1d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -17230,7 +17230,7 @@ dependencies = [
  "futures",
  "openssl",
  "serde",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
  "tower-http",
  "tracing-subscriber 0.3.19",
 ]
