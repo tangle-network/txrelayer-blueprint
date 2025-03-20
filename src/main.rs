@@ -1,14 +1,15 @@
 use std::time::Duration;
 
-use blueprint_sdk::logging;
-use blueprint_sdk::tokio;
+use blueprint_sdk as sdk;
+use sdk::runner::config::BlueprintEnvironment;
+use sdk::tokio;
 use tower_http::cors::CorsLayer;
 use tower_http::timeout::TimeoutLayer;
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 use txrelayer_blueprint as blueprint;
 
-#[blueprint_sdk::main(env, skip_logger)]
+#[tokio::main]
 async fn main() -> color_eyre::Result<()> {
     tracing_subscriber::registry()
         .with(
@@ -25,6 +26,7 @@ async fn main() -> color_eyre::Result<()> {
     color_eyre::install()?;
 
     let app_config_name = std::env::var("APP_CONFIG_NAME").unwrap_or_else(|_| "config".to_string());
+    let env = BlueprintEnvironment::load()?;
     let context = blueprint::ServiceContext::new(
         env,
         blueprint::call_permit::CALL_PERMIT_ADDRESS,
@@ -35,6 +37,7 @@ async fn main() -> color_eyre::Result<()> {
     // build our application with some routes
     let app = axum::Router::new()
         .nest("/api/v1", blueprint::http::routes())
+        .route("/health", axum::routing::get(health_check))
         .fallback(handler_404)
         .with_state(context)
         .layer(CorsLayer::permissive())
@@ -48,16 +51,20 @@ async fn main() -> color_eyre::Result<()> {
     // run it with hyper
     let addr = format!("0.0.0.0:{port}");
     let listener = tokio::net::TcpListener::bind(&addr).await?;
-    logging::debug!(%addr, "HTTP service started");
+    sdk::debug!(%addr, "HTTP service started");
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await?;
-    logging::info!("Exiting...");
+    sdk::info!("Exiting...");
     Ok(())
 }
 
 async fn handler_404() -> impl axum::response::IntoResponse {
     (axum::http::StatusCode::NOT_FOUND, "nothing to see here")
+}
+
+async fn health_check() -> impl axum::response::IntoResponse {
+    (axum::http::StatusCode::OK, "OK")
 }
 
 async fn shutdown_signal() {

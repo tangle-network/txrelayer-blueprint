@@ -1,12 +1,13 @@
 use std::future::IntoFuture;
 
-use alloy::primitives::{Address, Bytes, Selector, TxHash, B256, U256};
+use blueprint_sdk as sdk;
+
+use alloy::primitives::{Address, B256, Bytes, Selector, TxHash, U256};
 use axum::{
-    extract::{rejection::JsonRejection, FromRequest, State},
+    extract::{FromRequest, State, rejection::JsonRejection},
     http::StatusCode,
     response::{IntoResponse, Response},
 };
-use blueprint_sdk::logging;
 use futures::TryFutureExt;
 use serde::{Deserialize, Serialize};
 
@@ -56,13 +57,7 @@ pub async fn relay_tx(
         s,
     } = tx;
 
-    logging::info!(
-        "Relaying transaction from {} to {} with value {} and data {}",
-        from,
-        to,
-        value,
-        data
-    );
+    sdk::info!("Relaying transaction from {from} to {to} with value {value} and data {data}");
 
     check_allowed_calls(&ctx.app_config, &to, &data)?;
 
@@ -177,7 +172,7 @@ impl IntoResponse for AppError {
             AppError::Blueprint(err) => {
                 // Because `TraceLayer` wraps each request in a span that contains the request
                 // method, uri, etc we don't need to include those details here
-                logging::error!(%err, "something went wrong");
+                sdk::error!(%err, "something went wrong");
 
                 match err {
                     crate::Error::Contract(alloy::contract::Error::TransportError(
