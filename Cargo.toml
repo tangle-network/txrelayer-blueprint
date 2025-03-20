@@ -1,7 +1,7 @@
 [package]
 name = "txrelayer-blueprint"
-version = "0.1.1"
-edition = "2021"
+version = "0.1.2"
+edition = "2024"
 description = "A Free Transaction Relayer on Tangle built as a blueprint"
 authors = ["Shady Khalifa <dev+github@shadykhalifa.me>"]
 license = "MIT OR Apache-2.0"
@@ -10,7 +10,7 @@ repository = "https://github.com/tangle-network/txrelayer-blueprint"
 readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies"]
 keywords = ["tangle", "blueprint", "avs"]
-rust-version = "1.81"
+rust-version = "1.85"
 
 [features]
 default = ["gadget"]
@@ -18,10 +18,7 @@ gadget = ["color-eyre", "tracing-subscriber"]
 
 [dependencies]
 thiserror = "^2"
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = [
-  "tangle",
-  "macros",
-] }
+blueprint-sdk = { git = "https://github.com/tangle-network/blueprint.git", features = ["tangle", "macros"] }
 
 axum = { version = "0.8", features = ["macros"] }
 tower-http = { version = "0.6.1", features = ["timeout", "trace", "cors"] }
@@ -35,17 +32,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = tr
 openssl = { version = "*", features = ["vendored"] }
 
 [dependencies.alloy]
-version = "^0.9"
+version = "0.12.6"
 features = ["sol-types", "contract", "network", "providers", "rpc", "signers", "signer-local"]
-
-[build-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = ["build"] }
-
-[dev-dependencies]
-blueprint-sdk = { git = "https://github.com/tangle-network/gadget-workspace", branch = "main", features = [
-  "testing",
-  "tangle",
-] }
 
 [lib]
 path = "src/lib.rs"

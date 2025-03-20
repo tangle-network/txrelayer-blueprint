@@ -3,10 +3,9 @@ use std::sync::Arc;
 use alloy::network::{Ethereum, EthereumWallet};
 use alloy::primitives::Address;
 use alloy::providers::fillers::{FillProvider, JoinFill, RecommendedFillers, WalletFiller};
-use alloy::providers::RootProvider;
-use alloy::transports::BoxTransport;
-use blueprint_sdk::config::GadgetConfiguration;
+use alloy::providers::{Identity, RootProvider};
 use blueprint_sdk::keystore::{Keystore, KeystoreConfig};
+use blueprint_sdk::runner::config::BlueprintEnvironment;
 
 use crate::alloy_compat::BlueprintKeystoreEcdsaSigner;
 use crate::call_permit;
@@ -17,15 +16,13 @@ pub type RecommendedFillersOf<T> = <T as RecommendedFillers>::RecommendedFillers
 /// A type alias for the Alloy provider with wallet.
 pub type AlloyProviderWithWallet = FillProvider<
     JoinFill<RecommendedFillersOf<Ethereum>, WalletFiller<EthereumWallet>>,
-    RootProvider<BoxTransport>,
-    BoxTransport,
-    Ethereum,
+    FillProvider<JoinFill<Identity, RecommendedFillersOf<Ethereum>>, RootProvider>,
 >;
 
 /// The service context for the transaction relayer.
 #[derive(Clone)]
 pub struct ServiceContext {
-    pub(crate) config: GadgetConfiguration,
+    pub(crate) config: BlueprintEnvironment,
     pub(crate) alloy_provider: AlloyProviderWithWallet,
     pub(crate) call_permit_instance: call_permit::Instance,
     pub(crate) app_config: Arc<AppConfig>,
@@ -33,7 +30,7 @@ pub struct ServiceContext {
 
 impl ServiceContext {
     pub async fn new(
-        config: GadgetConfiguration,
+        config: BlueprintEnvironment,
         call_permit_address: Address,
         app_config_name: &str,
     ) -> crate::Result<Self> {
@@ -42,7 +39,7 @@ impl ServiceContext {
         let signer = BlueprintKeystoreEcdsaSigner::new(keystore).local_signer()?;
         let wallet = EthereumWallet::new(signer);
         let root_provider = alloy::providers::ProviderBuilder::new()
-            .on_builtin(&config.http_rpc_endpoint)
+            .connect(&config.http_rpc_endpoint)
             .await?;
         let alloy_provider = FillProvider::new(root_provider, Ethereum::recommended_fillers())
             .join_with(WalletFiller::new(wallet));
@@ -65,7 +62,7 @@ impl ServiceContext {
         &self.call_permit_instance
     }
 
-    pub fn config(&self) -> &GadgetConfiguration {
+    pub fn config(&self) -> &BlueprintEnvironment {
         &self.config
     }
 

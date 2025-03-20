@@ -1,7 +1,7 @@
 use alloy::signers::{k256::ecdsa::SigningKey, local::LocalSigner};
 use blueprint_sdk::{
     crypto::k256::K256Ecdsa,
-    keystore::{backends::Backend, Keystore},
+    keystore::{Keystore, backends::Backend},
 };
 
 /// A compatibility layer for the Alloy Keystore with the Blueprint Keystore.
